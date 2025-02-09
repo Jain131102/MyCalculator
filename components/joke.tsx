@@ -27,19 +27,18 @@ export default function Joke({ onJokeDisplayed }: JokeProps) {
   }
 
   return (
-    <div className="mt-4 p-4 bg-yellow-100 rounded">
-      <p className="font-semibold">{joke.setup}</p>
+    <div className="mt-4 p-4 bg-black rounded">
+      <p className="font-semibold text-yellow-300">{joke.setup}</p>
       {!showPunchline ? (
         <button
           onClick={handlePunchlineClick}
-          className="mt-2 bg-yellow-500 text-white p-2 rounded hover:bg-yellow-600 transition-colors"
+          className="mt-2 bg-yellow-500 text-black p-2 rounded hover:bg-yellow-400 transition-colors"
         >
           Show Punchline
         </button>
       ) : (
-        <p className="mt-2 italic">{joke.punchline}</p>
+        <p className="mt-2 italic text-green-300">{joke.punchline}</p>
       )}
     </div>
   )
 }
-
