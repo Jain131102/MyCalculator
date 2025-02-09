@@ -54,7 +54,13 @@ export default function Calculator() {
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg">
-      <input type="text" value={display} className="w-full mb-4 p-2 text-right text-xl border rounded" readOnly />
+      <input 
+  type="text" 
+  value={display} 
+  className="w-full mb-4 p-2 text-right text-xl border rounded bg-black text-white" 
+  readOnly 
+/>
+
       <div className="grid grid-cols-5 gap-2">
         {buttons.map((btn) => (
           <button
