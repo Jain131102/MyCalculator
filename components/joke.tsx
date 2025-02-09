@@ -1,0 +1,45 @@
+"use client"
+
+import { useState, useEffect } from "react"
+
+interface JokeProps {
+  onJokeDisplayed: () => void
+}
+
+export default function Joke({ onJokeDisplayed }: JokeProps) {
+  const [joke, setJoke] = useState({ setup: "", punchline: "" })
+  const [showPunchline, setShowPunchline] = useState(false)
+
+  useEffect(() => {
+    fetch("/api/jokes")
+      .then((res) => res.json())
+      .then((data) => {
+        setJoke(data)
+        setShowPunchline(false)
+      })
+  }, [])
+
+  const handlePunchlineClick = () => {
+    setShowPunchline(true)
+    setTimeout(() => {
+      onJokeDisplayed()
+    }, 3000)
+  }
+
+  return (
+    <div className="mt-4 p-4 bg-yellow-100 rounded">
+      <p className="font-semibold">{joke.setup}</p>
+      {!showPunchline ? (
+        <button
+          onClick={handlePunchlineClick}
+          className="mt-2 bg-yellow-500 text-white p-2 rounded hover:bg-yellow-600 transition-colors"
+        >
+          Show Punchline
+        </button>
+      ) : (
+        <p className="mt-2 italic">{joke.punchline}</p>
+      )}
+    </div>
+  )
+}
+
